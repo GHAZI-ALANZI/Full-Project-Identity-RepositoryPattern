@@ -2,7 +2,7 @@
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Models
 {
-    public class Items
+    public class Item
     {
         [Key]
         public int Id { get; set; }
