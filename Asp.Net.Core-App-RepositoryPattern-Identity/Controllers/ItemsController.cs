@@ -16,6 +16,23 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         {
             IEnumerable<Item> itemsList = _db.Items.ToList();
             return View(itemsList);
+
+        }
+        //GET
+        public IActionResult New()
+        {
+
+            return View();
+
+        }
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult New(Item item)
+        {
+            _db.Items.Add(item);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
