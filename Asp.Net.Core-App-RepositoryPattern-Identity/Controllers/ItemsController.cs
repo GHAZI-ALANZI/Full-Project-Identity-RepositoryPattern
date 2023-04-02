@@ -81,5 +81,34 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
                 return View(item);
             }
         }
+        //GET
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var item = _db.Items.Find(Id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        //POST
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteItem(int? Id)
+        {
+            var item = _db.Items.Find(Id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            _db.Remove(item);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
