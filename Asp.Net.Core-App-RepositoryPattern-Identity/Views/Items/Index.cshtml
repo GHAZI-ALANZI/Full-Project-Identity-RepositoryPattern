@@ -4,6 +4,12 @@
 }
 
 <div class="container p-3">
+    @if (TempData["successData"] != null)
+    {
+        <h3 style="color:brown;">
+            @TempData["successData"]
+        </h3>
+    }
 
     <div class="row pt-4">
         <div class="col-6">
