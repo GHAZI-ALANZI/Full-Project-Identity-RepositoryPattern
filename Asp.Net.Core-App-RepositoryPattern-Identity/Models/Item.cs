@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Models
 {
@@ -16,6 +17,8 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         [Required]
         [DisplayName("Category")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }

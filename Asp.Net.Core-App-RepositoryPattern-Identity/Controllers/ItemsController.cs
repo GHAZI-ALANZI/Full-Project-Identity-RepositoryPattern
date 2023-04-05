@@ -49,14 +49,16 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 
         }
 
-        public void createSelectList(int selectId = 0)
+        public void createSelectList(int selectId = 1)
         {
-            List<Category> categories = new List<Category> {
-              new Category() {Id = 0, Name = "Select Category"},
-              new Category() {Id = 1, Name = "Computers"},
-              new Category() {Id = 2, Name = "Mobiles"},
-              new Category() {Id = 3, Name = "Electric machines"},
-            };
+            //List<Category> categories = new List<Category> {
+            //  new Category() {Id = 0, Name = "Select Category"},
+            //  new Category() {Id = 1, Name = "Computers"},
+            //  new Category() {Id = 2, Name = "Mobiles"},
+            //  new Category() {Id = 3, Name = "Electric machines"},
+            //};
+
+            List<Category> categories = _db.Categories.ToList();
             SelectList listItems = new SelectList(categories, "Id", "Name", selectId);
             ViewBag.CategoryList = listItems;
         }
@@ -67,11 +69,13 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
             {
                 return NotFound();
             }
+           
             var item = _db.Items.Find(Id);
             if (item == null)
             {
                 return NotFound();
             }
+            createSelectList(item.CategoryId);
             return View(item);
         }
 
@@ -108,6 +112,7 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
             {
                 return NotFound();
             }
+            createSelectList(item.CategoryId);
             return View(item);
         }
 
