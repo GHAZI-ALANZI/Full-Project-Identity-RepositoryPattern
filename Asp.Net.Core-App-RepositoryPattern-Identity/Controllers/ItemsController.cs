@@ -2,6 +2,7 @@
 using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
@@ -15,7 +16,7 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         private readonly AppDbContext _db;
         public IActionResult Index()
         {
-            IEnumerable<Item> itemsList = _db.Items.ToList();
+            IEnumerable<Item> itemsList = _db.Items.Include(c => c.Category).ToList();
             return View(itemsList);
 
         }
