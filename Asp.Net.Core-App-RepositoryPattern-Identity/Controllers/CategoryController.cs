@@ -38,7 +38,7 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                _repository.AddOne(category);
                 return RedirectToAction("Index");
             }
             else
@@ -51,7 +51,16 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         public IActionResult Edit(int? Id)
         {
 
-            return View();
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var category = _repository.FindById(Id.Value);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
         }
 
         //POST
@@ -61,7 +70,7 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                _repository.UpdateOne(category);
                 return RedirectToAction("Index");
             }
             else
@@ -73,7 +82,16 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         //GET
         public IActionResult Delete(int? Id)
         {
-            return View();
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var category = _repository.FindById(Id.Value);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
         }
 
         //POST
@@ -82,7 +100,8 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         public IActionResult Delete(Category category)
         {
 
-            TempData["successData"] = "Item has been deleted successfully";
+            _repository.DeleteOne(category);
+            TempData["successData"] = "category has been deleted successfully";
             return RedirectToAction("Index");
         }
     }
