@@ -1,6 +1,6 @@
 ﻿using Asp.Net.Core_App_RepositoryPattern_Identity.Data;
 using Asp.Net.Core_App_RepositoryPattern_Identity.Repository.Base;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Repository
 {
@@ -20,6 +20,16 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Repository
         public IEnumerable<T> FindAll()
         {
             return context.Set<T>().ToList();
+
+        }
+        public async Task<T> FindByIdAsync(int id)
+        {
+            return await context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<IEnumerable<T>> FindAllAsync()
+        {
+            return await context.Set<T>().ToListAsync();
         }
     }
 }

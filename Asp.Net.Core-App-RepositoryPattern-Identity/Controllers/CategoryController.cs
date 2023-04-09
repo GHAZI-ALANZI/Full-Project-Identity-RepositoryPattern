@@ -13,9 +13,9 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 
         private IRepository<Category> _repository;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_repository.FindAll());
+            return View(await _repository.FindAllAsync());
         }
     }
 }
