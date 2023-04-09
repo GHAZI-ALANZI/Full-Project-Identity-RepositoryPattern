@@ -22,5 +22,68 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 
             return View(allCat);
         }
+
+        //GET
+        public IActionResult New()
+        {
+
+
+            return View();
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult New(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(category);
+            }
+        }
+
+        //GET
+        public IActionResult Edit(int? Id)
+        {
+
+            return View();
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(category);
+            }
+        }
+
+        //GET
+        public IActionResult Delete(int? Id)
+        {
+            return View();
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(Category category)
+        {
+
+            TempData["successData"] = "Item has been deleted successfully";
+            return RedirectToAction("Index");
+        }
     }
 }
