@@ -17,5 +17,9 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Repository
         {
             return context.Set<T>().Find(id);
         }
+        public IEnumerable<T> FindAll()
+        {
+            return context.Set<T>().ToList();
+        }
     }
 }
