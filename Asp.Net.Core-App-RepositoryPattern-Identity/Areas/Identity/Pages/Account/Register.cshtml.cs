@@ -97,6 +97,10 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Areas.Identity.Pages.Accou
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            [Required]
+            [Phone]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
         }
 
 
@@ -113,7 +117,7 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Areas.Identity.Pages.Accou
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                user.PhoneNumber = Input.PhoneNumber;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
