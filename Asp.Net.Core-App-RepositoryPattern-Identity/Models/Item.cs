@@ -19,6 +19,9 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Models
         [DisplayName("Category")]
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        public string? imagePath { get; set; }
+        [NotMapped]
+        public IFormFile clientFile { get; set; }
         public Category? Category { get; set; }
     }
 }

@@ -3,16 +3,18 @@ using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
     public class ItemsController : Controller
     {
-        public ItemsController(AppDbContext db)
+        public ItemsController(AppDbContext db, IHostingEnvironment host)
         {
             _db = db;
+            _host = host;
         }
-
+        private readonly IHostingEnvironment _host;
         private readonly AppDbContext _db;
         public IActionResult Index()
         {
@@ -38,6 +40,15 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
             }
             if (ModelState.IsValid)
             {
+                string fileName = string.Empty;
+                if (item.clientFile != null)
+                {
+                    string myUpload = Path.Combine(_host.WebRootPath, "images");
+                    fileName = item.clientFile.FileName;
+                    string fullPath = Path.Combine(myUpload, fileName);
+                    item.clientFile.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    item.imagePath = fileName;
+                }
                 _db.Items.Add(item);
                 _db.SaveChanges();
                 TempData["successData"] = "Item has been added successfully";

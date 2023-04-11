@@ -21,4 +21,8 @@
     <PackageReference Include="NEST" Version="7.17.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
