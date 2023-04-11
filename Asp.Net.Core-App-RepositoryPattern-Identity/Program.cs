@@ -14,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
     ));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddTransient(typeof(IRepository<>),typeof(MainRepository<>));
 
