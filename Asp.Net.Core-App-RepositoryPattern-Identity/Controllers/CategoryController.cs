@@ -1,6 +1,7 @@
 ﻿using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
 using Asp.Net.Core_App_RepositoryPattern_Identity.Repository.Base;
 using Microsoft.AspNetCore.Mvc;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
@@ -38,6 +39,12 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (category.clientFile != null)
+                {
+                    MemoryStream stream = new MemoryStream();
+                    category.clientFile.CopyTo(stream);
+                    category.dbImage = stream.ToArray();
+                }
                 _repository.AddOne(category);
                 return RedirectToAction("Index");
             }
