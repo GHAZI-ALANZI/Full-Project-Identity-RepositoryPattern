@@ -1,10 +1,12 @@
 ﻿using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
 using Asp.Net.Core_App_RepositoryPattern_Identity.Repository.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         public CategoryController(IRepository<Category> repository)

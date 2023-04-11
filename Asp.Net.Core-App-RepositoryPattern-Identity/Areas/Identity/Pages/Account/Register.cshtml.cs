@@ -118,6 +118,7 @@ namespace Asp.Net.Core_App_RepositoryPattern_Identity.Areas.Identity.Pages.Accou
             {
                 var user = CreateUser();
                 user.PhoneNumber = Input.PhoneNumber;
+                user.EmailConfirmed = true;//just for testing value is true but must be fales!!!!!
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

@@ -1,5 +1,6 @@
 ﻿using Asp.Net.Core_App_RepositoryPattern_Identity.Data;
 using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
+    [Authorize]
     public class ItemsController : Controller
     {
         public ItemsController(AppDbContext db, IHostingEnvironment host)

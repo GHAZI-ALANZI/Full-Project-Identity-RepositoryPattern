@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Areas.Employees.Controllers
 {
-    [Area("Employees")]
+    [Area("Employees"), Authorize]
     public class EmployeesController : Controller
     {
         private readonly AppDbContext _context;

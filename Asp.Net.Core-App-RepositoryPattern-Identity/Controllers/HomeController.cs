@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
 using Asp.Net.Core_App_RepositoryPattern_Identity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
