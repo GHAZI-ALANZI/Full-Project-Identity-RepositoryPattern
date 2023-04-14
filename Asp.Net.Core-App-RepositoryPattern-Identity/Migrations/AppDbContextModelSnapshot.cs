@@ -154,15 +154,15 @@ namespace Asp.Net.CoreAppRepositoryPatternIdentity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "60473b18-18a7-46b1-b44d-a3f4e27874ea",
-                            ConcurrencyStamp = "7723523b-7280-4593-9d71-7601b93c45b2",
+                            Id = "9e70c961-a1d9-446f-9f27-6731bc81e9b4",
+                            ConcurrencyStamp = "36fb0d7a-ae30-47c9-a0df-2f7d056978ef",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "55ccc0e2-ab77-4116-af63-92f64f324cc6",
-                            ConcurrencyStamp = "7d9127b8-53f7-4c69-b661-e7a077cbd44c",
+                            Id = "f8c7e211-5b75-4a59-948c-5a6e542e1f36",
+                            ConcurrencyStamp = "c2c10c81-5992-4c1f-88f6-0a97c62021ac",
                             Name = "User",
                             NormalizedName = "user"
                         });
