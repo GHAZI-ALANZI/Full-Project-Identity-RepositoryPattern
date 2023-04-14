@@ -6,7 +6,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Asp.Net.Core_App_RepositoryPattern_Identity.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = clsRoles.roleAdmin)]
     public class CategoryController : Controller
     {
         public CategoryController(IRepository<Category> repository)
